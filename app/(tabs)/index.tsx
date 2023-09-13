@@ -6,11 +6,12 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
+
 import { Octicons } from "@expo/vector-icons";
 import WorkoutPlan from "@/components/workoutPlan";
 import { useNavigation } from "expo-router";
@@ -33,21 +34,6 @@ export default function TabOneScreen() {
   const [showModal, setModal] = useState(false);
   const [value, setValue] = useState("");
   const { workouts, addPlan } = useWorkout();
-
-  const DATA: string[] = [
-    "chest day",
-    "leg ",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-    "back",
-  ];
   return (
     <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "white" }}>
       <Text style={styles.title}>My Workouts</Text>
@@ -98,8 +84,8 @@ export default function TabOneScreen() {
       <View style={{ flex: 1 }}>
         <FlatList
           contentContainerStyle={{ gap: 20, padding: 20 }}
-          data={workouts}
-          renderItem={({ item }) => <WorkoutPlan item={item.name} />}
+          data={Object.keys(workouts)}
+          renderItem={({ item }) => <WorkoutPlan item={item} />}
         />
       </View>
     </SafeAreaView>
